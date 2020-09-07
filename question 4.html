@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>
+#words
+{
+background-color: rgba(255,0,0,0.4);
+margin:4px;
+padding:3px;
+border-style: dotted;
+border-color: rgba(255,0,0,1);
+}
+</style>
+<script>
+function fire()
+{
+var str = document.getElementById("phrase").value;
+var arr=str.split(' ');
+arr=arr.reverse();
+if(document.getElementById("filter").value=="")
+{
+var result=document.getElementById("result_string");
+result.innerHTML=null;
+var count1=0;
+for(var j=0;j<arr.length;j++)
+{
+if(j%2!=0)
+{
+result.innerHTML+="<span id=words>"+arr[j]+" </span>";
+} else {
+result.innerHTML+="<span id=words style='text-decoration: underline;'>"+arr[j]+" </span>";
+count1++;
+}
+document.getElementById("count").innerHTML = count1 + " word(s) filtered out." ;
+}
+}
+else if(document.getElementById("filter").value)
+{
+arr=regular_exp(arr);
+var i=0;
+var result=document.getElementById("result_string");
+result.innerHTML=null;
+var count=0;
+while(i<arr.length)
+{
+if(arr[i]!=undefined)
+{
+result.innerHTML+="<span id=words>"+arr[i]+" </span>";
+} else
+count++;
+i++;
+}
+document.getElementById("count").innerHTML = count + " word(s) filtered out." ;
+}
+}
+function regular_exp(arr)
+{
+var F=document.getElementById("filter").value;
+var filter = new RegExp(F);
+for(var i=0;i<arr.length;i++)
+{
+if(filter.test(arr[i]))
+delete arr[i];
+}
+return arr;
+}
+</script>
+</head>
+<body>
+<div id="string_reverse">
+<table>
+<tr>
+<td align="right">Name: </td>
+<td><input id="phrase" type="text"></td>
+</tr>
+<tr>
+<td align="right">Filter: </td>
+<td><input id="filter" type="text" ></td>
+</tr>
+<tr>
+<th><button id="string_reverse_fire" onclick="fire()">Go</button></th>
+</tr>
+</table>
+<p id="result_string"></p>
+<p id="count"></p>
+</div>
+</body>
+</html>
