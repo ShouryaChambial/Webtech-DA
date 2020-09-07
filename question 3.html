@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>19BIT0246 Question 2</title>
+        <script type="text/javascript">
+        function validate()
+        {
+            var name=document.getElementById("sname").value;
+            var regx=/^[a-zA-Z]+$/;
+            var regno=document.getElementById("sregno").value;
+            var regx1=/^[0-2][0-9][a-zA-Z]{3}[0-9]{4}$/;
+            var email=document.getElementById("semail").value;
+            var regx2=/^([a-zA-Z0-9\.-]+)@([a-z0-9\-]+).([a-z]{2,10})(.[a-z]{2,5})?$/;
+            var mobile=document.getElementById("smobile").value;
+            var regx3=/^[6-9][0-9]{9}$/;
+            var taddress= document.getElementById("psaddress").value;
+			var regx4=/^[a-zA-Z0-9\s,'-]*$/;
+	        var paddress= document.getElementById("tsaddress").value;
+            var regx5=/^[a-zA-Z0-9\s,'-]*$/;
+            if (regx.test(name)&&regx1.test(regno)&&regx2.test(email)&&regx3.test(mobile)&&regx4.test(paddress)&&regx5.test(taddress))
+            {
+                alert("Valid Information is provided");
+            }
+            else
+            {
+                alert("Invalid Information is provided");
+            }
+
+        }
+        function copy()
+        {
+            var a=document.getElementById("psaddress");
+            var b=document.getElementById("tsaddress");
+            var c=document.getElementById("cpyaddress");
+            if(a.checked == true)
+            {
+                c.value=b.value;
+            }
+            else
+            {
+                c.value=""
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <form action="#">
+            <table>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><input type="text" id="smobile" placeholder="Enter mobile number"></td>
+                </tr>
+                <tr>
+                    <td>Register Number</td>
+                    <td><input type="text" id="sregno" placeholder="Enter reg no"></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="sname" placeholder="Enter name"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" id="semail" placeholder="Enter email"></td>
+                </tr>
+                <tr>
+                    <td>Temporary Address</td>
+                    <td><input type="text" id="tsaddress" placeholder="Enter temporary address"></td>
+                </tr>
+                <tr>
+                    <td><br>Permanent Address</td>
+                    <td><input type="checkbox" id="psaddress" onclick="copy()">Permanent address is same as temporary address
+                    <br><br><input id="cpyaddress" disabled></input></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="validate()" type="button">Submit your form</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
